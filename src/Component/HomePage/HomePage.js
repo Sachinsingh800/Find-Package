@@ -38,6 +38,9 @@ function handleText(){
   setText("")
   navigate("/ResultPage")
 }
+function handleChange(e){
+    setPackage(e.target.value)
+}
 
   return (
     <div  className={style.main}>
@@ -51,7 +54,7 @@ function handleText(){
         <div  key={i}>
 
             <li>
-            <input value={packages}  onChange={(e)=>setPackage(e.target.value)} className={style.radiobtn} type="radio" id="package"  />
+            <input value={packages}  onChange={handleChange} className={style.radiobtn} type="radio" id="package"  />
              <label for="package">{item.package.name}</label>
             </li>
            
