@@ -16,8 +16,8 @@ const [input ,setInput] = useState("")
 const [showmore,setShowMore] = useState(true)
 
 const [packages,setPackage] = useState("")
-const [ packageData,setPackageData] = useState([])
-console.log(packageData)
+
+
 const saveData={
     name:packages,
     discription:text,
@@ -32,6 +32,7 @@ const saveData={
         .then((data)=>setData(data.results  ))
         .catch((error)=>console.log(error))
       },[])
+
 function getAllData(){
     setMore(25)
     setShowMore(!showmore)
@@ -41,15 +42,18 @@ function getlessData(){
     setShowMore(!showmore)
 }
 function handleSubmit(){
-setPackageData([...packageData,saveData])
+const dataPackage=JSON.parse(localStorage.getItem("packageData")) || []
+let  data=[...dataPackage,saveData]
+localStorage.setItem("packageData",JSON.stringify(data))
 setText("")
-localStorage.setItem("packageData",packageData)
-  navigate("/ResultPage")
+alert("ho gaya bhai")
+//   navigate("/ResultPage")
 }
 function handleChange(e){
     setPackage(e.target.value)
-    console.log(packages,"radio buttton working")
 }
+
+  console.log()
 
   return (
     <div  className={style.main}>

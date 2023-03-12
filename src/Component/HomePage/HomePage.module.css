@@ -26,12 +26,13 @@
     justify-content: flex-start;
     row-gap: 0.5rem;
     font-size: 20px;
-    height: 70vh;
+    height: 55vh;
     font-weight: 700;
     overflow-y: scroll;
-    margin-bottom: -9rem;
+    margin-bottom: -3rem;
     padding: 1rem;
     margin-left: -20rem;
+    /* border: 1px red solid; */
 }
 li{
    list-style: none;
