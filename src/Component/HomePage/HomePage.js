@@ -50,8 +50,6 @@ function handleChange(e){
     setPackage(e.target.value)
 }
 
-  console.log()
-
   return (
     <div  className={style.main}>
           <input  className={style.search} value={input} onChange={(e)=>setInput(e.target.value)} placeholder='search your favroite package'></input>

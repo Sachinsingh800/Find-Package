@@ -5,14 +5,21 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function ResultPage() {
+  
+    const [dataPackage,setDataPackage] = useState(JSON.parse(localStorage.getItem("packageData")) || [])
     
-    const dataPackage=JSON.parse(localStorage.getItem("packageData")) || []
+
 
     function handleDelete( index){
-        const newPackage=dataPackage.filter((item,i)=>
-        i !== index
-        )
-        localStorage.setItem("packageData",JSON.stringify(newPackage))
+       
+            const confirmed = window.confirm("Are you sure you want to delete this item?");
+            if (confirmed) {
+                const newPackage=dataPackage.filter((item,i)=>
+                i !== index
+                )
+                localStorage.setItem("packageData",JSON.stringify(newPackage))
+                setDataPackage(newPackage)
+            }   
     }
     
   return (
