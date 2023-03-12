@@ -1,14 +1,17 @@
 import React, { useState ,useEffect } from 'react'
 import style from "./HomePage.module.css"
+import { useNavigate } from 'react-router-dom'
 
 
 
 
 function HomePage() {
+    const navigate=useNavigate()
 const [data,setData] = useState([])
 const [more,setMore] = useState(3)
 const [storeTxt,setStoreTxt] = useState([])
-const [packages,setPackage] = useState("")
+
+const [packages,setPackage] = useState(false)
 console.log(packages,"sjhdkjahjkhdjhs")
 
 const [text,setText] = useState("")
@@ -33,6 +36,7 @@ function getlessData(){
 function handleText(){
   setStoreTxt([text,...storeTxt])
   setText("")
+  navigate("/ResultPage")
 }
 
   return (

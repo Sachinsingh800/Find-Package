@@ -8,6 +8,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import ResultPage from './Component/ResultPage/ResultPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/ResultPage",
+    element: <ResultPage />,
   },
 ]);
 root.render(
