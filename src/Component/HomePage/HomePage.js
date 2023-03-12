@@ -9,14 +9,21 @@ function HomePage() {
     const navigate=useNavigate()
 const [data,setData] = useState([])
 const [more,setMore] = useState(3)
-const [storeTxt,setStoreTxt] = useState([])
 
-const [packages,setPackage] = useState(false)
-console.log(packages,"sjhdkjahjkhdjhs")
 
 const [text,setText] = useState("")
 const [input ,setInput] = useState("")
 const [showmore,setShowMore] = useState(true)
+
+const [packages,setPackage] = useState("")
+const [ packageData,setPackageData] = useState([])
+console.log(packageData)
+const saveData={
+    name:packages,
+    discription:text,
+}
+
+
 
 
     useEffect(()=>{
@@ -33,13 +40,15 @@ function getlessData(){
     setMore(3)
     setShowMore(!showmore)
 }
-function handleText(){
-  setStoreTxt([text,...storeTxt])
-  setText("")
+function handleSubmit(){
+setPackageData([...packageData,saveData])
+setText("")
+localStorage.setItem("packageData",packageData)
   navigate("/ResultPage")
 }
 function handleChange(e){
     setPackage(e.target.value)
+    console.log(packages,"radio buttton working")
 }
 
   return (
@@ -50,11 +59,11 @@ function handleChange(e){
           <h4>Result</h4>
         {data.slice(0,more).filter((item)=>
         {return item.package.name.toLowerCase().includes(input.toLowerCase()) }
-        ).map((item ,i)=>
-        <div  key={i}>
+        ).map((item ,index)=>
+        <div  key={index}>
 
             <li>
-            <input value={packages}  onChange={handleChange} className={style.radiobtn} type="radio" id="package"  />
+            <input value={item.package.name}  onChange={handleChange} className={style.radiobtn} type="radio" id="package"  />
              <label for="package">{item.package.name}</label>
             </li>
            
@@ -65,7 +74,7 @@ function handleChange(e){
         <div className={style.textareabox}>
         <label>why is this your fav?</label>
         <textarea value={text} onChange={((e)=>setText(e.target.value))} className={style.textarea}  placeholder='write here' /> 
-        <button onClick={handleText} className={style.btn}>Submit</button>
+        <button onClick={handleSubmit} className={style.btn}>Submit</button>
         </div>
       
     </div>
