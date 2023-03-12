@@ -7,8 +7,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 function ResultPage() {
   
     const [dataPackage,setDataPackage] = useState(JSON.parse(localStorage.getItem("packageData")) || [])
+    const [showPackageData,setShowPackageData] =useState([])
+    const [show,setShow] =useState(false)
     
-
+console.log(showPackageData)
 
     function handleDelete( index){
        
@@ -21,16 +23,33 @@ function ResultPage() {
                 setDataPackage(newPackage)
             }   
     }
+    function handleShowData( index){
+                const showData=dataPackage.filter((item,i)=>
+                i === index
+                )
+              
+           setShowPackageData(showData)
+           setShow(!show)
+    }
     
   return (
     <div className={style.main}>
       <h1>Welcome to the favroite NPM Packages</h1>
-         <div className={style.container}>
+      {show ? <> {showPackageData.map((item)=>
+      <div className={style.container2}>
+        <div>
+        <h3>Package Name ➡️ {item.name}</h3> 
+         <h5>discription ➡️ {item.discription}</h5>
+        </div>
+          <span onClick={()=>setShow(false)}><RemoveRedEyeIcon/></span> 
+      </div>
+
+      )} </> :      <div className={style.container}>
         {dataPackage.map((item,index)=>
         <div key={index} className={style.list}>
              <li>{item.name}</li>
              <div className={style.iconlist}>
-              <span ><RemoveRedEyeIcon/></span> 
+              <span onClick={()=>handleShowData(index)}><RemoveRedEyeIcon/></span> 
               <span><EditIcon /></span>
               <span onClick={()=>handleDelete(index)}>< DeleteIcon /></span>
              </div>
@@ -38,6 +57,8 @@ function ResultPage() {
            
         )}
         </div>
+         }
+    
     </div>
   )
 }

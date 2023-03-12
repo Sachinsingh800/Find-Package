@@ -43,7 +43,7 @@ const dataPackage=JSON.parse(localStorage.getItem("packageData")) || []
 let  data=[...dataPackage,saveData]
 localStorage.setItem("packageData",JSON.stringify(data))
 setText("")
-alert("ho gaya bhai")
+alert("Package save successfully 👍")
 navigate("/ResultPage")
 }
 function handleChange(e){
