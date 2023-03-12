@@ -23,9 +23,6 @@ const saveData={
     discription:text,
 }
 
-
-
-
     useEffect(()=>{
         fetch("https://api.npms.io/v2/search?q=reactjs")
         .then((response)=>response.json())
@@ -47,7 +44,7 @@ let  data=[...dataPackage,saveData]
 localStorage.setItem("packageData",JSON.stringify(data))
 setText("")
 alert("ho gaya bhai")
-//   navigate("/ResultPage")
+navigate("/ResultPage")
 }
 function handleChange(e){
     setPackage(e.target.value)
